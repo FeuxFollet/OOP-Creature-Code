@@ -18,6 +18,29 @@ class Creature:
     def __str__(self):
         return f"{self.name} (HP: {self.hp})"
 
+# ===============================
+# SwimmingCreature Branch
+# ===============================
+
+class SwimmingCreature(Creature):
+    def __init__(self, name, hp, attack_power):
+        super().__init__(name, hp, attack_power)
+        self.depth = 0
+
+    def dive_to(self, target_depth):
+        self.depth = target_depth
+        print(f"{self.name} dives to depth {self.depth} meters.")
+
+    def attack(self, target):
+        if not self.is_alive():
+            print(f"{self.name} cannot attack because it is defeated.")
+            return
+
+        print(f"{self.name} attacks from underwater at depth {self.depth}!")
+        print(f"It splashes {target.name} for 7 damage!")
+        target.hp -= self.attack_power
+
+
 if __name__ == "__main__":
     print("=== Creature Class Tests ===\n")
 
@@ -66,5 +89,17 @@ if __name__ == "__main__":
     goblin.attack(slime)
     print(f"Slime should be at HP 0 → Actual: {slime.hp}")
     print()
-
     print("=== Tests Completed ===")
+    print()
+
+    print("=== SwimmingCreature Tests ===\n")
+    serpent = SwimmingCreature("Aqua Serpent", 60, 7)
+    serpent.dive_to(30)
+    print(f"Depth should be 30 → Actual: {serpent.depth}")
+
+    dummy = Creature("Practice Dummy", 40, 0)
+    serpent.attack(dummy)
+    print(f"Dummy HP should be 33 → Actual: {dummy.hp}")
+    print()
+    print("=== Tests Completed ===")
+    print()
