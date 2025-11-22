@@ -24,11 +24,12 @@ I will begin with a base class (`Creature`) and create additional subclasses on 
 ---
 
 ## Project Structure
+```bash
 oop_creature_code/
 │
 ├── creature_simulation.py # Base class + subclasses
 └── README.md
-
+```
 ## Project Structure
 
 To run the program (and tests), execute `creature_simulation.py`:
